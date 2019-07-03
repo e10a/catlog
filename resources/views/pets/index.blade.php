@@ -9,7 +9,7 @@
     <div>{{ $pet->name }}</div>
     @endforeach
     @else
-    <div>No one's home. Start by adding pets.</div>
+    <div>No one's home. Start by <a href="/pets/create">adding</a> pets.</div>
     @endif
 </div>
 </div>

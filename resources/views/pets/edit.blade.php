@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
-    <h1>Add Pet</h1>
+    <h1>Edit Pet</h1>
     <div class="box">
-    <form method="POST" action="/pets">
+    <form method="POST" action="/pets/{{ $pet->id }}">
+        @method("PATCH")
         @csrf
         <div class="field">
             <div class="control">
@@ -13,14 +14,14 @@
                     class="input {{ $errors->has('description') ? 'is-danger' : '' }}"
                     name="name"
                     placeholder="Pet name"
-                    value="{{ old('name') }}"
+                    value="{{ $pet->name }}"
                     required
                 >
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-link">Add Pet</button>
+                <button type="submit" class="button is-link">Edit Pet</button>
             </div>
         </div>
     </form>
