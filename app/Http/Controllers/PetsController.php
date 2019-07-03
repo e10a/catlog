@@ -7,9 +7,15 @@ use App\Pet;
 
 class PetsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $pets = Pet::all();
+        // $pets = Pet::all();
+        $pets = Pet::where('owner_id', auth()->id())->get();
         return view('pets.index', compact('pets'));
     }
 
@@ -21,7 +27,18 @@ class PetsController extends Controller
     public function store()
     {
         $attributes = request()->validate(['name' => 'required']);
+        $attributes['owner_id'] = auth()->id();
         Pet::create($attributes);
         return redirect('/pets');
+    }
+
+    public function show(Pet $pet)
+    {
+        return view('pets.show', compact('pet'));
+    }
+
+    public function edit(Pet $pet)
+    {
+        return view('pets.edit', compact('pet'));
     }
 }
