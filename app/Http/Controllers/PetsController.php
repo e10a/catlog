@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pet;
+use App\Mail\PetCreated;
 
 class PetsController extends Controller
 {
@@ -28,7 +29,12 @@ class PetsController extends Controller
     {
         $attributes = request()->validate(['name' => 'required']);
         $attributes['owner_id'] = auth()->id();
-        Pet::create($attributes);
+        $pet = Pet::create($attributes);
+
+        \Mail::to('ellenshimada@gmail.com')->send(
+            new PetCreated($pet)
+        );
+
         return redirect('/pets');
     }
 
