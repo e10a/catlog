@@ -32,7 +32,7 @@ class PetsController extends Controller
         $attributes['owner_id'] = auth()->id();
         $pet = Pet::create($attributes);
 
-        \Mail::to('ellenshimada@gmail.com')->send(
+        \Mail::to($pet->owner->email)->send(
             new PetCreated($pet)
         );
 
