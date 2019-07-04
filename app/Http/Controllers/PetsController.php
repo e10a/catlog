@@ -28,7 +28,7 @@ class PetsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate(['name' => 'required']);
+        $attributes = $this->validatePet();
         $attributes['owner_id'] = auth()->id();
         $pet = Pet::create($attributes);
 
@@ -53,8 +53,9 @@ class PetsController extends Controller
 
     public function update(Pet $pet)
     {
-        $attributes = request()->validate(['name' => 'required']);
-        $pet->update($attributes);
+        // $attributes = request()->validate(['name' => 'required']);
+        // $pet->update($attributes);
+        $pet->update($this->validatePet());
         return redirect('/pets');
     }
 
@@ -62,5 +63,12 @@ class PetsController extends Controller
     {
         $pet->delete();
         return redirect('/pets');
+    }
+
+    protected function validatePet()
+    {
+        return request()->validate([
+            'name' => 'required'
+        ]);
     }
 }
