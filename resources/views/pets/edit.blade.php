@@ -11,7 +11,7 @@
             <div class="control">
                 <input
                     type="text"
-                    class="input {{ $errors->has('description') ? 'is-danger' : '' }}"
+                    class="input {{ $errors->has('name') ? 'is-danger' : '' }}"
                     name="name"
                     placeholder="Pet name"
                     value="{{ $pet->name }}"
@@ -24,6 +24,11 @@
                 <button type="submit" class="button is-link">Edit Pet</button>
             </div>
         </div>
+    </form>
+    <form method="POST" action="/pets/{{ $pet->id }}">
+        {{ method_field('DELETE') }}
+        {{ csrf_field() }}
+        <button type="submit" class="button" style="margin-top: 1em;">Delete Pet</button>
     </form>
     </div>
     @include ('errors')
