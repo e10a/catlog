@@ -16,7 +16,8 @@ class PetsController extends Controller
     public function index()
     {
         // $pets = Pet::all();
-        $pets = Pet::where('owner_id', auth()->id())->get();
+        // $pets = Pet::where('owner_id', auth()->id())->get();
+        $pets = auth()->user()->pets;
         return view('pets.index', compact('pets'));
     }
 
