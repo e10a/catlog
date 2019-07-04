@@ -20,7 +20,7 @@
                         <h2>To Do</h2>
                         <ul>
                             <li>Add log for activities</li>
-                            <li>A proper welcome page</li>
+                            <li>Disallow duplicate pet names</li>
                         </ul>
                     </div>
                     <div>
