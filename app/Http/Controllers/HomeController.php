@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pets = Pet::all();
+        $pets = Pet::where('owner_id', auth()->id())->get();
         return view('home', compact('pets'));
     }
 }
