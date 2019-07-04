@@ -50,4 +50,17 @@ class PetsController extends Controller
         $this->authorize('update', $pet);
         return view('pets.edit', compact('pet'));
     }
+
+    public function update(Pet $pet)
+    {
+        $attributes = request()->validate(['name' => 'required']);
+        $pet->update($attributes);
+        return redirect('/pets');
+    }
+
+    public function destroy(Pet $pet)
+    {
+        $pet->delete();
+        return redirect('/pets');
+    }
 }
