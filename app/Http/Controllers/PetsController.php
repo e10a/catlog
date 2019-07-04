@@ -40,11 +40,13 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
+        $this->authorize('update', $pet);
         return view('pets.show', compact('pet'));
     }
 
     public function edit(Pet $pet)
     {
+        $this->authorize('update', $pet);
         return view('pets.edit', compact('pet'));
     }
 }

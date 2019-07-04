@@ -20,7 +20,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('pets', 'PetsController')->middleware('can:update,pet');
+// Route::resource('pets', 'PetsController')->middleware('can:update,pet');
+Route::resource('pets', 'PetsController');
 Route::resource('activity', 'ActivityController');
 // Route::get('/activity', 'ActivityController@index');
 // Route::get('/pets', 'PetsController@index');
