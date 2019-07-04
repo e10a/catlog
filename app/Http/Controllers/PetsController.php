@@ -30,6 +30,7 @@ class PetsController extends Controller
         $attributes = $this->validatePet();
         $attributes['owner_id'] = auth()->id();
         Pet::create($attributes);
+        flash('Pet ' . $attributes['name'] . ' has been created') ;
         return redirect('/pets');
     }
 

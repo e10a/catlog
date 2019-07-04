@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+    @if (session('message'))
+    <div class="notification is-primary">
+        <button class="delete"></button>
+        <div>{{ session('message') }}</div>
+    </div>
+    @endif
 <h1>Pets</h1>
 <div>
     @if ($pets->count())
